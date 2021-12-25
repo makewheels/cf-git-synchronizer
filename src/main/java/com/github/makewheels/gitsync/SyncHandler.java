@@ -2,10 +2,12 @@ package com.github.makewheels.gitsync;
 
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.transport.FetchResult;
+import org.eclipse.jgit.transport.LsRefsV2Request;
 import org.eclipse.jgit.transport.RemoteConfig;
 import org.eclipse.jgit.transport.URIish;
 
@@ -72,7 +74,8 @@ public class SyncHandler {
             //同步每一个分支
             for (Ref ref : giteeFetchResult.getAdvertisedRefs()) {
                 String refName = ref.getName();
-                git.pull().setRemote("gitee").setRemoteBranchName(refName).call();
+                git.pull().setCredentialsProvider(GiteeUtil.getCredential())
+                        .setRemote("gitee").setRemoteBranchName(refName).call();
                 git.push().setCredentialsProvider(GithubUtil.getCredential())
                         .setRemote("github").add(refName).call();
             }
