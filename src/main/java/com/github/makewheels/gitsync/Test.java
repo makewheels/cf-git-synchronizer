@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args) throws GitAPIException, IOException, URISyntaxException {
-        System.setProperty("github_token", " ");
-        System.setProperty("gitee_access_token", " ");
+        System.setProperty("github_token", "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");
+        System.setProperty("gitee_access_token", "d8ad901998ac42b59df1da71fca33901");
 
 //        List<String> github = GithubUtil.getAllRepoNames();
 //        List<String> gitee = GiteeUtil.getAllRepoNames();

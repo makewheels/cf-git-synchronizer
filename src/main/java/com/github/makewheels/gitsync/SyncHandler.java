@@ -66,6 +66,7 @@ public class SyncHandler {
             FetchResult giteeFetchResult = git.fetch().setRemote("gitee")
                     .setCredentialsProvider(GiteeUtil.getCredential()).call();
 
+            //同步每一个分支
             for (Ref ref : giteeFetchResult.getAdvertisedRefs()) {
                 String refName = ref.getName();
                 git.pull().setRemote("gitee").setRemoteBranchName(refName).call();
