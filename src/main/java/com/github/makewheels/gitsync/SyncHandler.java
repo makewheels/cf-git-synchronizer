@@ -6,10 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Ref;
-import org.eclipse.jgit.transport.FetchResult;
-import org.eclipse.jgit.transport.LsRefsV2Request;
-import org.eclipse.jgit.transport.RemoteConfig;
-import org.eclipse.jgit.transport.URIish;
+import org.eclipse.jgit.transport.*;
 
 import java.io.File;
 import java.io.IOException;
