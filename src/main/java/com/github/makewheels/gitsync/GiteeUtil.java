@@ -48,6 +48,6 @@ public class GiteeUtil {
     }
 
     public static UsernamePasswordCredentialsProvider getCredential() {
-        return new UsernamePasswordCredentialsProvider(username, System.getProperty("gitee_access_token"));
+        return new UsernamePasswordCredentialsProvider(username, System.getenv("gitee_access_token"));
     }
 }

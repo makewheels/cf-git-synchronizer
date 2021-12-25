@@ -53,7 +53,7 @@ public class GithubUtil {
     }
 
     public static UsernamePasswordCredentialsProvider getCredential() {
-        return new UsernamePasswordCredentialsProvider(username, System.getProperty("github_token"));
+        return new UsernamePasswordCredentialsProvider(username, System.getenv("github_token"));
     }
 
 }
