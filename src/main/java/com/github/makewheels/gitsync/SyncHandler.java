@@ -89,7 +89,7 @@ public class SyncHandler {
 
         }
         executorService.shutdown();
-        executorService.awaitTermination(10, TimeUnit.MINUTES);
+        executorService.awaitTermination(30, TimeUnit.MINUTES);
 
     }
 }
