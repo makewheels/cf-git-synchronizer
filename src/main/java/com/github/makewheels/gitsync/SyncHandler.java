@@ -1,6 +1,7 @@
 package com.github.makewheels.gitsync;
 
 import cn.hutool.core.io.FileUtil;
+import com.alibaba.fastjson.JSON;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Ref;
@@ -55,7 +56,7 @@ public class SyncHandler {
     public void run() throws GitAPIException, URISyntaxException, IOException {
         //获取两边仓库交集
         List<String> repoNames = GitUtil.getTheyBothHave(GithubUtil.getAllRepoNames(), GiteeUtil.getAllRepoNames());
-        System.out.println("两边都有的仓库：" + repoNames);
+        System.out.println("两边都有的仓库：" + JSON.toJSONString(repoNames));
         initAllRepos(repoNames);
 
         //初始化完成，同步每一个仓库
