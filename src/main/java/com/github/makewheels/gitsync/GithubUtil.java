@@ -21,7 +21,6 @@ public class GithubUtil {
         String response = HttpUtil.createGet("https://api.github.com/users/" + username
                         + "/repos?per_page=" + per_page + "&page=" + page)
                 .addHeaders(headers).execute().body();
-        System.out.println("response = " + response);
         return JSON.parseArray(response);
     }
 
