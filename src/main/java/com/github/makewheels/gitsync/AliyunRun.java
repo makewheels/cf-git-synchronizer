@@ -17,7 +17,7 @@ public class AliyunRun implements StreamRequestHandler {
     public void handleRequest(InputStream input, OutputStream output, Context context) {
         try {
             syncHandler.run();
-        } catch (GitAPIException | URISyntaxException | IOException e) {
+        } catch (GitAPIException | URISyntaxException | IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
