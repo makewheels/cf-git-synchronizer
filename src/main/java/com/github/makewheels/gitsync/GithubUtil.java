@@ -17,8 +17,7 @@ public class GithubUtil {
     public static JSONArray getRepositories(int per_page, int page) {
         System.out.println("获取github仓库, per_page = " + per_page + ", page = " + page);
         Map<String, String> headers = new HashMap<>();
-        System.out.println(System.getProperty("github_token"));
-        headers.put("Authorization", "token " + System.getProperty("github_token"));
+        headers.put("Authorization", "token " + System.getenv("github_token"));
         String response = HttpUtil.createGet("https://api.github.com/users/" + username
                         + "/repos?per_page=" + per_page + "&page=" + page)
                 .addHeaders(headers).execute().body();

@@ -15,7 +15,7 @@ public class GiteeUtil {
     public static JSONArray getRepositories(int per_page, int page) {
         System.out.println("获取gitee仓库, per_page = " + per_page + ", page = " + page);
         String response = HttpUtil.get("https://gitee.com/api/v5/user/repos?" +
-                "access_token=" + System.getProperty("gitee_access_token")
+                "access_token=" + System.getenv("gitee_access_token")
                 + "&per_page=" + per_page + "&page=" + page);
         return JSON.parseArray(response);
     }
