@@ -12,6 +12,6 @@ public class AliyunRun implements StreamRequestHandler {
 
     @Override
     public void handleRequest(InputStream input, OutputStream output, Context context) {
-
+        syncHandler.run();
     }
 }
