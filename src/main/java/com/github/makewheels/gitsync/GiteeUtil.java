@@ -4,6 +4,7 @@ import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,4 +47,7 @@ public class GiteeUtil {
         return "https://gitee.com/" + username + "/" + repoName + ".git";
     }
 
+    public static UsernamePasswordCredentialsProvider getCredential() {
+        return new UsernamePasswordCredentialsProvider(username, System.getProperty("gitee_access_token"));
+    }
 }

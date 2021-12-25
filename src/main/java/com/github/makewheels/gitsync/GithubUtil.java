@@ -4,6 +4,7 @@ import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +49,10 @@ public class GithubUtil {
 
     public static String getGitUrlByRepoName(String repoName) {
         return "https://github.com/" + username + "/" + repoName + ".git";
+    }
+
+    public static UsernamePasswordCredentialsProvider getCredential() {
+        return new UsernamePasswordCredentialsProvider(username, System.getProperty("github_token"));
     }
 
 }
