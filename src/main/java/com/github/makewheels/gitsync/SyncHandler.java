@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,6 +57,7 @@ public class SyncHandler {
     public void run() throws GitAPIException, URISyntaxException, IOException {
         //获取两边仓库交集
         List<String> repoNames = GitUtil.getTheyBothHave(GithubUtil.getAllRepoNames(), GiteeUtil.getAllRepoNames());
+        Collections.sort(repoNames);
         System.out.println("两边都有的仓库：" + JSON.toJSONString(repoNames));
         initAllRepos(repoNames);
 
