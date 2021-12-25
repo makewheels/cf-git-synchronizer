@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SyncHandler {
-    private final File workDir = new File(System.getProperty("work_dir"), "cf-git-synchronizer");
+    private final File workDir = new File(System.getenv("work_dir"), "cf-git-synchronizer");
     private final File reposDir = new File(workDir, "repos");
 
     private void initAllRepos(List<String> repoNames) throws GitAPIException, URISyntaxException {
