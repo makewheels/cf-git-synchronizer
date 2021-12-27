@@ -2,6 +2,9 @@ package com.github.makewheels.gitsync;
 
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
+import com.github.makewheels.gitsync.utils.GitUtil;
+import com.github.makewheels.gitsync.utils.GiteeUtil;
+import com.github.makewheels.gitsync.utils.GithubUtil;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Ref;
@@ -58,7 +61,7 @@ public class SyncHandler {
 
     public void run() throws GitAPIException, URISyntaxException, IOException, InterruptedException {
         //获取两边仓库交集
-        List<String> repoNames = GitUtil.getTheyBothHave(GithubUtil.getAllRepoNames(), GiteeUtil.getAllRepoNames());
+        List<String> repoNames = GitUtil.getSyncRepoNames();
         Collections.sort(repoNames);
         System.out.println("两边都有的仓库：" + JSON.toJSONString(repoNames));
         initAllRepos(repoNames);

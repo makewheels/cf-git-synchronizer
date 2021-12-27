@@ -1,23 +1,18 @@
 package com.github.makewheels.gitsync;
 
 import cn.hutool.core.io.FileUtil;
-import com.alibaba.fastjson.JSON;
+import com.github.makewheels.gitsync.utils.GiteeUtil;
+import com.github.makewheels.gitsync.utils.GithubUtil;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.LogCommand;
-import org.eclipse.jgit.api.RemoteAddCommand;
-import org.eclipse.jgit.api.RemoteSetUrlCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Ref;
-import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.transport.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args) throws GitAPIException, IOException, URISyntaxException {

@@ -1,4 +1,4 @@
-package com.github.makewheels.gitsync;
+package com.github.makewheels.gitsync.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyun.fc.runtime.Context;

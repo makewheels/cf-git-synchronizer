@@ -1,7 +1,8 @@
-package com.github.makewheels.gitsync;
+package com.github.makewheels.gitsync.run;
 
 import com.aliyun.fc.runtime.Context;
 import com.aliyun.fc.runtime.StreamRequestHandler;
+import com.github.makewheels.gitsync.SyncHandler;
 import lombok.SneakyThrows;
 import org.eclipse.jgit.api.errors.GitAPIException;
 

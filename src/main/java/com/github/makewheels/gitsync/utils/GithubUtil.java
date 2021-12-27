@@ -1,4 +1,4 @@
-package com.github.makewheels.gitsync;
+package com.github.makewheels.gitsync.utils;
 
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
