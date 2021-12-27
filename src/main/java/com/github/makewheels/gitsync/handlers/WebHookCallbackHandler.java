@@ -15,6 +15,10 @@ public class WebHookCallbackHandler {
         System.out.println("回调json: " + json);
 
         JSONObject callback = JSON.parseObject(json);
+        //过滤测试回调
+        if (callback.getString("ref").equals("refs/heads/test_version")) {
+            return;
+        }
         String repoName = callback.getJSONObject("repository").getString("name");
         //同步指定仓库
         timerSyncHandler.syncSingleRepo(repoName);
