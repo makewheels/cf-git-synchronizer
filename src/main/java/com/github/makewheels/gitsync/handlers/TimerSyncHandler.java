@@ -91,10 +91,11 @@ public class TimerSyncHandler {
     }
 
     public void run() throws GitAPIException, URISyntaxException, IOException, InterruptedException {
-        //获取两边仓库交集
+        //先拿到要同步的目标仓库
         List<String> repoNames = GitUtil.getSyncRepoNames();
         Collections.sort(repoNames);
-        System.out.println("两边都有的仓库：" + JSON.toJSONString(repoNames));
+        System.out.println("同步仓库总数: " + repoNames.size() + " 个");
+        System.out.println(JSON.toJSONString(repoNames));
         initAllRepos(repoNames);
 
         ExecutorService executorService = Executors.newFixedThreadPool(4);
@@ -103,7 +104,7 @@ public class TimerSyncHandler {
             executorService.submit(() -> syncSingleRepo(repoName));
         }
         executorService.shutdown();
-        executorService.awaitTermination(30, TimeUnit.MINUTES);
+        executorService.awaitTermination(1, TimeUnit.HOURS);
 
     }
 }
