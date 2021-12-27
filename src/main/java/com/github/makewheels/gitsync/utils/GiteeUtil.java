@@ -118,7 +118,6 @@ public class GiteeUtil {
         for (int i = 0; i < webHooks.size(); i++) {
             JSONObject webHook = webHooks.getJSONObject(i);
             String url = webHook.getString("url");
-            //解析url，获取webHookName参数
             Map<String, String> map = parseUrlParamsToMap(url);
             if (map == null) continue;
             if (StringUtils.equals(map.get("webHookName"), "git-sync")) {
@@ -129,13 +128,12 @@ public class GiteeUtil {
     }
 
     /**
-     * 根据回调url中的名字参数判断指定仓库的webHook是否存在
+     * 根据回调url中的名字参数判断指定仓库的git sync webHook是否存在
      *
      * @param repoName
-     * @param webHookName
      * @return
      */
-    public static boolean isWebHookNameExist(String repoName, String webHookName) {
+    public static boolean isGitSyncWebHookExist(String repoName) {
         return getGitSyncWebHook(repoName) != null;
     }
 

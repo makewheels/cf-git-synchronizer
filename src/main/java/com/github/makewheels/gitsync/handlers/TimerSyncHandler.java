@@ -1,4 +1,4 @@
-package com.github.makewheels.gitsync;
+package com.github.makewheels.gitsync.handlers;
 
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class SyncHandler {
+public class TimerSyncHandler {
     private final File workDir = new File(System.getenv("work_dir"), "cf-git-synchronizer");
     private final File reposDir = new File(workDir, "repos");
 
