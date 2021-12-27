@@ -59,6 +59,37 @@ public class TimerSyncHandler {
         }
     }
 
+    public void syncSingleRepo(String repoName) {
+        System.out.println("sync: " + repoName);
+        Git git = null;
+        try {
+            git = Git.open(new File(reposDir, repoName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //通过fetch获取gitee分支
+        FetchResult giteeFetchResult = null;
+        try {
+            giteeFetchResult = git.fetch().setRemote("gitee")
+                    .setCredentialsProvider(GiteeUtil.getCredential()).call();
+        } catch (GitAPIException e) {
+            e.printStackTrace();
+        }
+
+        //同步每一个分支
+        for (Ref ref : giteeFetchResult.getAdvertisedRefs()) {
+            String refName = ref.getName();
+            try {
+                git.pull().setCredentialsProvider(GiteeUtil.getCredential())
+                        .setRemote("gitee").setRemoteBranchName(refName).call();
+                git.push().setCredentialsProvider(GithubUtil.getCredential())
+                        .setRemote("github").add(refName).call();
+            } catch (GitAPIException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void run() throws GitAPIException, URISyntaxException, IOException, InterruptedException {
         //获取两边仓库交集
         List<String> repoNames = GitUtil.getSyncRepoNames();
@@ -69,27 +100,7 @@ public class TimerSyncHandler {
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         //初始化完成，同步每一个仓库
         for (String repoName : repoNames) {
-            System.out.println("sync: " + repoName);
-            Git git = Git.open(new File(reposDir, repoName));
-            //通过fetch获取gitee分支
-            FetchResult giteeFetchResult = git.fetch().setRemote("gitee")
-                    .setCredentialsProvider(GiteeUtil.getCredential()).call();
-
-            executorService.submit(() -> {
-                //同步每一个分支
-                for (Ref ref : giteeFetchResult.getAdvertisedRefs()) {
-                    String refName = ref.getName();
-                    try {
-                        git.pull().setCredentialsProvider(GiteeUtil.getCredential())
-                                .setRemote("gitee").setRemoteBranchName(refName).call();
-                        git.push().setCredentialsProvider(GithubUtil.getCredential())
-                                .setRemote("github").add(refName).call();
-                    } catch (GitAPIException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
+            executorService.submit(() -> syncSingleRepo(repoName));
         }
         executorService.shutdown();
         executorService.awaitTermination(30, TimeUnit.MINUTES);
