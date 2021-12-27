@@ -38,7 +38,7 @@ public class TimerCreateWebHookHandler {
         //初始化完成，同步每一个仓库
 //        for (String repoName : repoNames) {
 
-        String repoName = repoNames.get(0);
+        String repoName = "cf-git-synchronizer";
         executorService.submit(() -> handleSingleRepoWebHook(repoName));
 //        }
         executorService.shutdown();
