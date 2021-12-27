@@ -8,10 +8,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class HandleWebHookCallback implements StreamRequestHandler {
-    private WebHookCallbackHandler webHookCallbackHandler;
+    private final WebHookCallbackHandler webHookCallbackHandler = new WebHookCallbackHandler();
 
     @Override
     public void handleRequest(InputStream input, OutputStream output, Context context) {
-        webHookCallbackHandler.run(input,output);
+        webHookCallbackHandler.run(input, output);
     }
 }

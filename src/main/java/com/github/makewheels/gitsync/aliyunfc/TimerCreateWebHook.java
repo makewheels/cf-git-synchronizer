@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class TimerCreateWebHook implements StreamRequestHandler {
-    private TimerCreateWebHookHandler timerCreateWebHookHandler;
+    private final TimerCreateWebHookHandler timerCreateWebHookHandler = new TimerCreateWebHookHandler();
 
     @Override
     public void handleRequest(InputStream input, OutputStream output, Context context) {
